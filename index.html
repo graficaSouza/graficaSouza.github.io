@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gráfica Souza - Soluções em Impressão</title>
+    <link rel="shortcut icon" type="image/x-icon" href="C:\Users\HP\Downloads\Site Grafica\logo svg.svg">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #FFD700, #FF8C00);
+            padding: 0.8rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .logo {
+            height: 120px;
+            width: auto;
+            max-width: 150px;
+            object-fit: contain;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+            font-size: 1rem;
+        }
+
+        .nav-links a:hover {
+            color: #FF1493;
+        }
+
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: white;
+            margin: 3px 0;
+            transition: 0.3s;
+            border-radius: 2px;
+        }
+
+        /* Main Content */
+        main {
+            margin-top: 80px;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #FFD700, #FF8C00, #00BFFF);
+            padding: 80px 0;
+            text-align: center;
+            color: white;
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-content {
+            width: 100%;
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: clamp(1rem, 3vw, 1.5rem);
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            background: #FF1493;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            background: #DC143C;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        /* Sections */
+        .section {
+            padding: 60px 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section h2 {
+            font-size: clamp(2rem, 4vw, 2.5rem);
+            text-align: center;
+            margin-bottom: 3rem;
+            background: linear-gradient(135deg, #FF8C00, #FFD700, #FF1493);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* About Section */
+        .about {
+            background: linear-gradient(135deg, #F0F8FF, #E6F3FF);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text {
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            color: #555;
+        }
+
+        .about-image {
+            text-align: center;
+        }
+
+        .about-image i {
+            font-size: clamp(100px, 15vw, 200px);
+            background: linear-gradient(135deg, #FFD700, #FF8C00, #00BFFF);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Services Section */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            border: 3px solid transparent;
+            background-clip: padding-box;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border: 3px solid #FFD700;
+        }
+
+        .service-card i {
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #FF8C00, #FFD700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .service-card h3 {
+            font-size: clamp(1.2rem, 2vw, 1.5rem);
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .service-card p {
+            font-size: clamp(0.9rem, 1.5vw, 1rem);
+        }
+
+        /* Portfolio Section */
+        .portfolio {
+            background: linear-gradient(135deg, #FFF8DC, #FFEBCD);
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .portfolio-item {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .portfolio-item:hover {
+            transform: scale(1.05);
+        }
+
+        .portfolio-item i {
+            display: block;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            padding: 2rem;
+            text-align: center;
+            background: linear-gradient(135deg, #FFD700, #FF8C00, #00BFFF, #FF1493);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .portfolio-item h4 {
+            padding: 1rem;
+            text-align: center;
+            font-size: clamp(1rem, 2vw, 1.2rem);
+        }
+
+        /* Contact Section */
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .contact-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .contact-item i {
+            font-size: clamp(2rem, 3vw, 2.5rem);
+            margin-bottom: 1rem;
+            color: #FF8C00;
+        }
+
+        .contact-item h3 {
+            margin-bottom: 1rem;
+            color: #333;
+            font-size: clamp(1.1rem, 2vw, 1.3rem);
+        }
+
+        .contact-item p {
+            font-size: clamp(0.9rem, 1.5vw, 1rem);
+            word-break: break-word;
+        }
+
+        .map-container {
+            grid-column: 1 / -1;
+            background: #f0f0f0;
+            height: 300px;
+            border-radius: 15px;
+            margin-top: 2rem;
+            overflow: hidden;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+            border-radius: 15px;
+        }
+
+        /* WhatsApp Float Button */
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 30px;
+            right: 30px;
+            background: #25D366;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 1.8rem;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+            z-index: 1000;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+        }
+
+        .whatsapp-float:hover {
+            background: #20BA5A;
+            transform: scale(1.1);
+            box-shadow: 2px 2px 20px rgba(0,0,0,0.3);
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #333, #555);
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+        }
+
+        footer p {
+            font-size: clamp(0.9rem, 1.5vw, 1rem);
+        }
+
+        /* Tablet Responsiveness */
+        @media (max-width: 1024px) {
+            .section {
+                padding: 50px 1.5rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .nav-links a {
+                font-size: 0.9rem;
+            }
+
+            .services-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 1.5rem;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            }
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            header {
+                padding: 0.5rem 0;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background: linear-gradient(135deg, #FFD700, #FF8C00);
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: center;
+                padding-top: 2rem;
+                transition: left 0.3s ease;
+                gap: 2rem;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .nav-links a {
+                font-size: 1.2rem;
+                padding: 1rem;
+            }
+
+            main {
+                margin-top: 70px;
+            }
+
+            .hero {
+                padding: 40px 0;
+                min-height: 60vh;
+            }
+
+            .section {
+                padding: 40px 1rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .service-card {
+                padding: 1.5rem;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+
+            .contact-info {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .map-container {
+                height: 250px;
+                margin-top: 1.5rem;
+            }
+
+            .whatsapp-float {
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+
+        /* Extra Small Mobile */
+        @media (max-width: 480px) {
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .service-card {
+                padding: 1rem;
+            }
+
+            .contact-item {
+                padding: 1.5rem;
+            }
+
+            .hero {
+                padding: 30px 0;
+            }
+        }
+
+        /* Animation Classes */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Menu Animation */
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <img src="logo svg.svg" alt="Gráfica Souza" class="logo">
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#servicos">Serviços</a></li>
+                <li><a href="#portfolio">Portfólio</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+            <div class="menu-toggle" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="section">
+                <div class="hero-content">
+                    <h1>Gráfica Souza</h1>
+                    <p>Soluções profissionais em impressão com qualidade e agilidade</p>
+                    <a href="#contato" class="cta-button">
+                        <i class="fas fa-rocket"></i>
+                        Peça já seu orçamento
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="sobre" class="about">
+            <div class="section">
+                <h2>Sobre Nós</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <p>A Gráfica Souza é uma empresa familiar com anos de experiência no mercado gráfico. Oferecemos soluções completas em impressão, desde pequenos cartões de visita até grandes banners e materiais publicitários.</p>
+                        <br>
+                        <p>Nossa missão é entregar produtos de alta qualidade com agilidade e preços competitivos, sempre priorizando o atendimento personalizado e a satisfação de nossos clientes.</p>
+                        <br>
+                        <p>Com equipamentos modernos e uma equipe especializada, garantimos resultados que superem suas expectativas.</p>
+                    </div>
+                    <div class="about-image">
+                        <i class="fas fa-print"></i>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="servicos" class="section">
+            <h2>Nossos Serviços</h2>
+            <div class="services-grid">
+                <div class="service-card fade-in">
+                    <i class="fas fa-id-card"></i>
+                    <h3>Cartões de Visita</h3>
+                    <p>Cartões personalizados em diversos tipos de papel e acabamentos especiais.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <i class="fas fa-file-alt"></i>
+                    <h3>Panfletos e Folders</h3>
+                    <p>Material promocional de alta qualidade para divulgar seu negócio.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <i class="fas fa-flag"></i>
+                    <h3>Banners e Faixas</h3>
+                    <p>Impressões em grande formato para eventos e publicidade externa.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <i class="fas fa-book"></i>
+                    <h3>Livros e Revistas</h3>
+                    <p>Impressão e encadernação de publicações profissionais.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <i class="fas fa-sticky-note"></i>
+                    <h3>Adesivos</h3>
+                    <p>Adesivos personalizados em diversos formatos e materiais.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <i class="fas fa-calendar"></i>
+                    <h3>Calendários</h3>
+                    <p>Calendários personalizados para empresas e uso promocional.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Portfolio Section -->
+        <section id="portfolio" class="portfolio">
+            <div class="section">
+                <h2>Nosso Portfólio</h2>
+                <div class="portfolio-grid">
+                    <div class="portfolio-item fade-in">
+                        <i class="fas fa-id-card"></i>
+                        <h4>Cartões Premium</h4>
+                    </div>
+                    <div class="portfolio-item fade-in">
+                        <i class="fas fa-newspaper"></i>
+                        <h4>Impressos Promocionais</h4>
+                    </div>
+                    <div class="portfolio-item fade-in">
+                        <i class="fas fa-image"></i>
+                        <h4>Material Publicitário</h4>
+                    </div>
+                    <div class="portfolio-item fade-in">
+                        <i class="fas fa-certificate"></i>
+                        <h4>Certificados</h4>
+                    </div>
+                    <div class="portfolio-item fade-in">
+                        <i class="fas fa-tags"></i>
+                        <h4>Etiquetas</h4>
+                    </div>
+                    <div class="portfolio-item fade-in">
+                        <i class="fas fa-envelope"></i>
+                        <h4>Convites</h4>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contato" class="section">
+            <h2>Entre em Contato</h2>
+            <div class="contact-info">
+                <div class="contact-item fade-in">
+                    <i class="fas fa-phone"></i>
+                    <h3>Telefone</h3>
+                    <p>(68) 99201-6012</p>
+                </div>
+                <div class="contact-item fade-in">
+                    <i class="fab fa-whatsapp"></i>
+                    <h3>WhatsApp</h3>
+                    <p>(68) 99201-6012</p>
+                </div>
+                <div class="contact-item fade-in">
+                    <i class="fas fa-envelope"></i>
+                    <h3>E-mail</h3>
+                    <p>contato@graficasouza.com.br</p>
+                </div>
+                <div class="contact-item fade-in">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h3>Endereço</h3>
+                    <p>Rua Pernambuco, 779<br>Bosque - Rio Branco/AC</p>
+                </div>
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3929.591532040964!2d-67.82032112489817!3d-9.96790180668561!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x917f8c510392151f%3A0xefe597ba803fce3c!2sR.%20Pernambuco%2C%20779%20-%20Bosque%2C%20Rio%20Branco%20-%20AC%2C%2069900-433!5e0!3m2!1spt-BR!2sbr!4v1756493978833!5m2!1spt-BR!2sbr" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/5568992016012?text=Olá! Gostaria de solicitar um orçamento." class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Footer -->
+    <footer>
+        <div class="section">
+            <p>&copy; 2025 Gráfica Souza. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                menuToggle.classList.remove('active');
+            });
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!menuToggle.contains(e.target) && !navLinks.contains(e.target)) {
+                navLinks.classList.remove('active');
+                menuToggle.classList.remove('active');
+            }
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const headerHeight = 80;
+                    const targetPosition = target.offsetTop - headerHeight;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in elements
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Header background on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.style.background = 'linear-gradient(135deg, rgba(255, 215, 0, 0.95), rgba(255, 140, 0, 0.95))';
+                header.style.backdropFilter = 'blur(10px)';
+            } else {
+                header.style.background = 'linear-gradient(135deg, #FFD700, #FF8C00)';
+                header.style.backdropFilter = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
